@@ -1,5 +1,6 @@
-This file is for you to describe the nitrol application. Typically
-you would include information such as the information below:
+NiTROL stands for Nice Tournament Registration Open List
+
+This is a simple web app used for registration in Go tournaments
 
 Installation and Setup
 ======================
