@@ -1,0 +1,3 @@
+include nitrol/config/deployment.ini_tmpl
+recursive-include nitrol/public *
+recursive-include nitrol/templates *
