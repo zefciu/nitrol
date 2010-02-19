@@ -10,7 +10,7 @@ def init_model(engine):
 	meta.engine = engine
 
 players_table = sa.Table("player", meta.metadata,
-		sa.Column("id", sa.types.Integer, schema.Sequence('player_seq_id', optional = True), primary_key=True),
+		sa.Column("id", sa.types.Integer, sa.schema.Sequence('player_seq_id', optional = True), primary_key=True),
 		sa.Column("first_name", sa.types.String(32), nullable=False),
 		sa.Column("last_name", sa.types.String(32), nullable=False),
 		sa.Column("email", sa.types.String(128), nullable=False),
@@ -19,7 +19,7 @@ players_table = sa.Table("player", meta.metadata,
 		sa.Column("egf", sa.types.Integer, nullable=True),
 		)
 
-class Foo(object):
+class Player(object):
 	pass
 
 orm.mapper(Player, players_table)
