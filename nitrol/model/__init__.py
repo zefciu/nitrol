@@ -11,8 +11,10 @@ def init_model(engine):
 
 players_table = sa.Table("players", meta.metadata,
         sa.Column("id", sa.types.Integer, sa.schema.Sequence('players_seq_id', optional = True), primary_key=True),
+        sa.Column("pin", sa.types.Integer, sa.schema.Sequence('players_seq_id', optional = True), primary_key=True),
         sa.Column("first_name", sa.types.String(32), nullable=False),
         sa.Column("last_name", sa.types.String(32), nullable=False),
+        sa.Column("club", sa.types.String(8), nullable=False),
         # sa.Column("email", sa.types.String(128), nullable=False),
         sa.Column("rank_num", sa.types.Integer, nullable=False),
         sa.Column("dan", sa.types.Boolean, nullable=False),
@@ -21,11 +23,14 @@ players_table = sa.Table("players", meta.metadata,
 
 class Player(object):
     def get_rank(self):
-        return self.rank_num + 'd' if self.dan else 'k'
+        return str(self.rank_num) + ('d' if self.dan else 'k')
     def set_rank(self, rank):
         self.rank_num = rank[:-1]
-        self.dan = rank[-1] is 'd'
+        self.dan = rank[-1] == 'd'
 
     rank=property(get_rank, set_rank, None, "Rank in short form")
+
+    def __iter__ (self): 
+        return ((attr, getattr(self, attr)) for attr in ['id', 'pin', 'first_name', 'club', 'last_name', 'rank', 'egf'])
 
 orm.mapper(Player, players_table)

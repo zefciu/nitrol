@@ -67,7 +67,6 @@ Ext.nitrol.AddPopup = Ext.extend(Ext.Window, {
 								itemId: 'egf', name: 'egf', fieldLabel: 'Punkty EGF', anchor: '100%', vtype: 'num'
 							}),
 					],
-					title: 'Dane',
 					padding: 4
 				});
 			this.combo.on('select', function (c, rec, i) {
@@ -101,7 +100,7 @@ Ext.nitrol.AddPopup = Ext.extend(Ext.Window, {
 				})
 		},
 		title: 'Nowy gracz',
-		height: 300,
+		height: 205,
 		width: 400,
 		layout: 'fit',
 	});

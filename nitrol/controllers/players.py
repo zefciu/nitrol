@@ -47,7 +47,8 @@ class PlayersController(BaseController):
     @jsonify
     def getindex(self):
         """Get players in JSON format"""
-        return []
+        players = [dict(plr) for plr in meta.Session.query(model.Player).all()]
+        return {'success': True, 'data': players}
 
     @jsonify
     @restrict('POST')
