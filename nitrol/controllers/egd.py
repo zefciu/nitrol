@@ -1,3 +1,4 @@
+# vim: fileencoding=utf-8
 import logging
 
 from pylons import request, response, session, tmpl_context as c
@@ -31,4 +32,5 @@ class EgdController(BaseController):
 
     def __remove_diacritics(self, s):
         """Decomposes string, then removes combining characters"""
+        s = s.replace(u'ł', 'l')
         return self.reCombining.sub('',unicodedata.normalize('NFD',unicode(s)))

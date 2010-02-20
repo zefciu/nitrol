@@ -1,0 +1,17 @@
+.search-item {
+    padding: 3px;
+}
+
+.search-item .name-div {
+    font-weight: bold;
+    background: #CCC;
+}
+
+.search-item .data-div {
+    color: #666;
+}
+
+.search-item em {
+    color: #000;
+    font-weight: bold;
+}
