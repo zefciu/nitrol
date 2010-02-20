@@ -31,7 +31,7 @@ Ext.nitrol.AddPopup = Ext.extend(Ext.Window, {
 								minChars: 2,
 								tpl: new Ext.XTemplate('<tpl for="."><div class="search-item">',
 									'<div class="name-div">{last_name} {first_name}</div>',
-									'<div class="data-div">Klub: <em>{club}</em></div>',
+									'<div class="data-div">Klub: <em>{club}</em> Siła: <em>{rank}</em></div>',
 									'</div></tpl>'),
 								itemSelector: 'div.search-item',
 								store: new Ext.data.JsonStore({
@@ -89,13 +89,15 @@ Ext.nitrol.AddPopup = Ext.extend(Ext.Window, {
 			this.form.el.mask('Zapisuję...', 'x-mask-loading');
 			this.form.getForm().submit({
 					url: 'players/add',
+					method: 'POST',
 					success: function () {
 						this.close();
 						Ext.nitrol.grid.store.load();
 					},
 					failure: function () {
 						this.form.el.unmask();
-					}
+					},
+					scope: this
 				})
 		},
 		title: 'Nowy gracz',
