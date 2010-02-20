@@ -1,7 +1,19 @@
 var Ext;
 Ext.ns('Ext.nitrol');
 
-Ext.form.VTypes.emailText = 'Niepoprawny adres e-mail';
+Ext.apply(Ext.form.VTypes, {
+		num: function (v, f) {
+			return /^[0-9]+$/.test(v);
+		},
+		numText: 'Wymagana wartość liczbowa',
+
+		rank: function (v, f) {
+			return /^[0-9]{1,2}(k|d)$/.test(v);
+		},
+		rankText: 'Podaj prawidłowy ranking np: 6k, 2d',
+
+		emailText: 'Niepoprawny adres e-mail'
+	});
 
 Ext.nitrol.AddPopup = Ext.extend(Ext.Window, {
 		initComponent: function () {
@@ -49,10 +61,10 @@ Ext.nitrol.AddPopup = Ext.extend(Ext.Window, {
 							}),
 						new Ext.form.TextField({
 								itemId: 'rank', name: 'rank', fieldLabel: 'Siła',
-								anchor: '100%', allowBlank: false, blankText: 'Wymagane'
+								anchor: '100%', allowBlank: false, blankText: 'Wymagane', vtype: 'rank'
 							}),
 						new Ext.form.TextField({
-								itemId: 'egf', name: 'egf', fieldLabel: 'Punkty EGF', anchor: '100%'
+								itemId: 'egf', name: 'egf', fieldLabel: 'Punkty EGF', anchor: '100%', vtype: 'num'
 							}),
 					],
 					title: 'Dane',
