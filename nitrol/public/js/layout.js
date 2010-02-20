@@ -7,7 +7,7 @@ Ext.nitrol.grid = new Ext.grid.GridPanel({
                 fields: [
                     'first_name',
                     'last_name',
-                    'email',
+             //       'email',
                     'rank',
                     'egf',
                 ]
@@ -15,14 +15,20 @@ Ext.nitrol.grid = new Ext.grid.GridPanel({
         columns: [
             {header: 'Imię', dataIndex: 'first_name'},
             {header: 'Nazwisko', dataIndex: 'last_name'},
-            {header: 'E-mail', dataIndex: 'email'},
+            //{header: 'E-mail', dataIndex: 'email'},
             {header: 'Siła', dataIndex: 'rank'},
             {header: 'EGF', dataIndex: 'egf'}
         ],
         tbar: [
             {
                 text: 'Nowy',
-                iconCls: 'icon-add'
+                iconCls: 'icon-add',
+                handler: function () {
+                    if (!Ext.isDefined(Ext.nitrol.addPopup)) {
+                        Ext.nitrol.addPopup = new Ext.nitrol.AddPopup();
+                        Ext.nitrol.addPopup.show();
+                    } 
+                }
             }
         ],
         region: 'center',
@@ -30,6 +36,7 @@ Ext.nitrol.grid = new Ext.grid.GridPanel({
 
 
 Ext.onReady(function () {
+        Ext.QuickTips.init();
         Ext.nitrol.vp = new Ext.Viewport({
                 items: [Ext.nitrol.grid],
                 layout: 'border'
