@@ -11,7 +11,7 @@ def init_model(engine):
 
 players_table = sa.Table("players", meta.metadata,
         sa.Column("id", sa.types.Integer, sa.schema.Sequence('players_seq_id', optional = True), primary_key=True),
-        sa.Column("pin", sa.types.Integer, sa.schema.Sequence('players_seq_id', optional = True), primary_key=True),
+        sa.Column("pin", sa.types.Integer, sa.schema.Sequence('players_seq_id', optional = True)),
         sa.Column("first_name", sa.types.String(32), nullable=False),
         sa.Column("last_name", sa.types.String(32), nullable=False),
         sa.Column("club", sa.types.String(8), nullable=False),
