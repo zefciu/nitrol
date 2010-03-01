@@ -20,6 +20,10 @@ Ext.nitrol.AddPopup = Ext.extend(Ext.Window, {
 			this.form = new Ext.form.FormPanel({
 					items: [
 						new Ext.form.Hidden({itemId: 'pin', name: 'pin'}),
+						new Ext.form.TextField({itemId: 'email', name: 'email', fieldLabel: 'E-mail', 
+								anchor: '100%', vtype: 'email', allowBlank: false, 
+								blankText: 'Adres email wymagany do potwierdzenia. Nie będzie publikowany'
+							}),
 						this.combo = new Ext.form.ComboBox({itemId: 'last_name',
 								name: 'last_name', 
 								fieldLabel: 'Nazwisko', 
@@ -51,10 +55,6 @@ Ext.nitrol.AddPopup = Ext.extend(Ext.Window, {
 								itemId: 'first_name', name: 'first_name', fieldLabel: 'Imię', 
 								anchor: '100%', allowBlank: false, blankText: 'Wymagane'
 							}),
-						// new Ext.form.TextField({itemId: 'email', name: 'email', fieldLabel: 'E-mail', 
-						// 		anchor: '100%', vtype: 'email', allowBlank: false, 
-						// 		blankText: 'Adres email wymagany do potwierdzenia. Nie będzie publikowany'
-						// 	})
 						new Ext.form.TextField({
 								itemId: 'club', name: 'club', fieldLabel: 'Klub',
 								anchor: '100%', allowBlank: false, blankText: 'Wymagane'
@@ -65,7 +65,7 @@ Ext.nitrol.AddPopup = Ext.extend(Ext.Window, {
 							}),
 						new Ext.form.TextField({
 								itemId: 'egf', name: 'egf', fieldLabel: 'Punkty EGF', anchor: '100%', vtype: 'num'
-							}),
+							})
 					],
 					padding: 4
 				});

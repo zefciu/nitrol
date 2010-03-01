@@ -1,8 +1,17 @@
 var Ext;
 Ext.ns('Ext.nitrol');
 
+Ext.nitrol.rankRenderer = function (num) {
+	return num > 0 ? num.toString() + 'd' : (Math.abs(num) + 1).toString() + 'k';
+}
+
+Ext.nitrol.tickCross = function (val) {
+	return val ? '&#x2714;' : '&#x2718;'
+}
+
 Ext.nitrol.grid = new Ext.grid.GridPanel({
 		store: new Ext.data.JsonStore({
+				remoteSort: false,
 				url: 'players/getindex',
 				root: 'data',
 				fields: [
@@ -12,16 +21,18 @@ Ext.nitrol.grid = new Ext.grid.GridPanel({
 					'last_name',
 					'club',
 					'rank',
+					'rank_num',
 					'egf',
+					'confirmed'
 				]
 			}),
 		columns: [
-			{header: 'Imię', dataIndex: 'first_name'},
-			{header: 'Nazwisko', dataIndex: 'last_name'},
-			{header: 'Klub', dataIndex: 'club'},
-			//{header: 'E-mail', dataIndex: 'email'},
-			{header: 'Siła', dataIndex: 'rank'},
-			{header: 'EGF', dataIndex: 'egf'}
+			{header: 'Imię', dataIndex: 'first_name', sortable: true},
+			{header: 'Nazwisko', dataIndex: 'last_name', sortable: true},
+			{header: 'Klub', dataIndex: 'club', sortable: true},
+			{header: 'Siła', dataIndex: 'rank_num', sortable: true, renderer: Ext.nitrol.rankRenderer},
+			{header: 'EGF', dataIndex: 'egf', sortable: true},
+			{header: 'Potwierdzone', dataIndex: 'confirmed', sortable: true, renderer: Ext.nitrol.tickCross}
 		],
 		tbar: [
 			{
@@ -36,6 +47,7 @@ Ext.nitrol.grid = new Ext.grid.GridPanel({
 			}
 		],
 		region: 'center',
+		viewConfig: {autoFill: true}
 	});
 
 

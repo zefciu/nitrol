@@ -1,0 +1,15 @@
+# vim: fileencoding=utf-8
+<html>
+    <head></head>
+    <body>
+Otrzymujesz tego maila ponieważ Twój adres został podany przez Ciebie
+lub inną osobę przy rejestracji na turniej 
+<a href="${c.tournament_url}">${c.tournament_name}</a>. <br />
+Jeśli to nie Ty podałeś ten adres - zignoruj tego maila. <br />
+Aby potwierdzić swoje uczestnictwo w turnieju kliknij w poniższy link:
+<br /> <a href="${c.confirmation_link}">${c.confirmation_link}</a>. <br />
+Dane, które zostały podane to:
+<strong>${c.first_name} ${c.last_name}</strong><br />
+Siła: <strong>${c.rank}</strong> Klub: <strong>${c.club}</strong>
+    </body>
+</html>
