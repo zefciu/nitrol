@@ -71,24 +71,26 @@ class PlayersController(BaseController):
             setattr(player, k, v)
 
         player.confirmed = False
-        self._sendConfirmMail(player)
+        self._createConfirmCode(player)
 
         meta.Session.add(player)
         meta.Session.commit()
+        self._sendConfirmMail(player)
         return {'success': True}
 
     def confirm(self, id, code):
         player = meta.Session.query(model.Player).filter(model.Player.id == id).one()
-        if code == player.code:
+        if code == player.confirmation_code:
             player.confirmed = True
-        meta.Session.add(player)
         meta.Session.commit()
-        c.player = player
         redirect_to('/')
 
-    def _sendConfirmMail(self, player):
+    def _createConfirmCode(self, player):
         ch = string.letters + string.digits
         player.confirmation_code = ''.join(rnd.choice(ch) for i in range (32))
+
+
+    def _sendConfirmMail(self, player):
         email_data = {}
         for fld in ['first_name', 'last_name', 'rank', 'club']:
             email_data[fld] = getattr(player, fld)

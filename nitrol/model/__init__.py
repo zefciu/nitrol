@@ -10,8 +10,10 @@ def init_model(engine):
     meta.engine = engine
 
 players_table = sa.Table("players", meta.metadata,
-        sa.Column("id", sa.types.Integer, sa.schema.Sequence('players_seq_id', optional = True), primary_key=True),
-        sa.Column("pin", sa.types.Integer, sa.schema.Sequence('players_seq_id', optional = True)),
+        sa.Column("id", sa.types.Integer, sa.schema.Sequence('players_seq_id', 
+            optional = True), primary_key=True),
+        sa.Column("pin", sa.types.Integer, sa.schema.Sequence('players_seq_id', 
+            optional = True)),
         sa.Column("first_name", sa.types.String(32), nullable=False),
         sa.Column("last_name", sa.types.String(32), nullable=False),
         sa.Column("club", sa.types.String(8), nullable=False),
@@ -31,6 +33,8 @@ class Player(object):
     rank=property(get_rank, set_rank, None, "Rank in short form")
 
     def __iter__ (self): 
-        return ((attr, getattr(self, attr)) for attr in ['id', 'pin', 'first_name', 'club', 'last_name', 'rank', 'rank_num', 'egf'])
+        return ((attr, getattr(self, attr)) for attr in ['id', 'pin', 
+            'first_name', 'club', 'last_name', 'rank', 'rank_num', 'egf', 
+            'confirmed'])
 
 orm.mapper(Player, players_table)
